@@ -5,19 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3aed435-0cd0-4c3a-ba72-f5f35ae566cb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Attendance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Enrollment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Lecturer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Unit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/AttendanceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/EnrollmentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/LecturerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/StudentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/UnitDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/AdminDashboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/LecturerDashboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/LoginFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/StudentDashboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c00dfdd1-a518-4b7f-9bf3-a77c184f6445.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c00dfdd1-a518-4b7f-9bf3-a77c184f6445.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/LecturerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/src/main/java/database/LecturerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/UnitsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/src/main/java/database/UnitsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/AttendanceDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/src/main/java/database/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/ErollementDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/LecturerDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/StudentDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/UnitsDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/UserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/src/main/java/resources/setup.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -29,11 +68,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.LecturerDashboard.executor": "Run",
+    "Application.LoginFrame.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "db-team-setup",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ADMIN/Desktop/Attendace-system",
@@ -42,7 +84,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "SQL Dialects",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -51,12 +96,53 @@
     ]
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ADMIN\Desktop\Attendace-system\attendance-system\src\main\java\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="database" />
+      <recent name="dao" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LoginFrame">
+    <configuration name="LecturerDashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.LecturerDashboard" />
+      <module name="attendance-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.LoginFrame" />
+      <module name="attendance-system" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="setup.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/attendance-system/src/main/java/database/setup.sql" />
       <script-mode>FILE</script-mode>
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LoginFrame" />
+        <item itemvalue="Application.LecturerDashboard" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -74,11 +160,22 @@
       <option name="presentableId" value="Default" />
       <updated>1779732876377</updated>
       <workItem from="1779732879922" duration="4354000" />
-      <workItem from="1779774037902" duration="746000" />
+      <workItem from="1779774037902" duration="1782000" />
+      <workItem from="1779952062195" duration="1021000" />
+      <workItem from="1779953735445" duration="1130000" />
+      <workItem from="1780138227166" duration="9008000" />
+      <workItem from="1780305990540" duration="3212000" />
+      <workItem from="1780420346756" duration="2926000" />
+      <workItem from="1780588623302" duration="4119000" />
+      <workItem from="1780762878609" duration="2914000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

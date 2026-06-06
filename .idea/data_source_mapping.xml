@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/database/setup.sql" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/dao/AttendanceDAO.java" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/dao/EnrollmentDAO.java" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/dao/LecturerDAO.java" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/dao/StudentDAO.java" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/dao/UnitDAO.java" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/dao/UserDAO.java" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
+    <file url="file://$PROJECT_DIR$/attendance-system/src/main/java/resources/setup.sql" value="c00dfdd1-a518-4b7f-9bf3-a77c184f6445" />
   </component>
 </project>
