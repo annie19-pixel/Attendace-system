@@ -53,8 +53,8 @@ public class LecturerDashboard extends JFrame {
 
     private static final Font TITLE_FONT  = new Font("SansSerif", Font.BOLD, 22);
     private static final Font HEADER_FONT = new Font("SansSerif", Font.BOLD, 14);
-    private static final Font BODY_FONT   = new Font("SansSerif", Font.PLAIN, 13);
-    private static final Font SMALL_FONT  = new Font("SansSerif", Font.PLAIN, 11);
+    private static final Font BODY_FONT   = new Font("SansSerif", Font.PLAIN, 15);
+    private static final Font SMALL_FONT  = new Font("SansSerif", Font.PLAIN, 13);
 
     // ── State ────────────────────────────────────────────────
     private final User           loggedInUser;
@@ -582,7 +582,7 @@ public class LecturerDashboard extends JFrame {
         table.setBackground(CARD_BG);
         table.setForeground(TEXT);
         table.setFont(BODY_FONT);
-        table.setRowHeight(36);
+        table.setRowHeight(42);
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
         table.setSelectionBackground(new Color(0x2A3260));
