@@ -49,8 +49,8 @@ public class AdminDashboard extends JFrame {
 
     private static final Font TITLE_FONT  = new Font("SansSerif", Font.BOLD, 22);
     private static final Font HEADER_FONT = new Font("SansSerif", Font.BOLD, 14);
-    private static final Font BODY_FONT   = new Font("SansSerif", Font.PLAIN, 15);
-    private static final Font SMALL_FONT  = new Font("SansSerif", Font.PLAIN, 13);
+    private static final Font BODY_FONT   = new Font("SansSerif", Font.PLAIN, 13);
+    private static final Font SMALL_FONT  = new Font("SansSerif", Font.PLAIN, 11);
 
     // ── Services / DAOs ──────────────────────────────────────
     private final User        adminUser;
@@ -286,7 +286,7 @@ public class AdminDashboard extends JFrame {
     }
 
     private void showRegisterStudentDialog() {
-        JDialog dlg  = dialog("Register New Student", 420, 490);
+        JDialog dlg  = dialog("Register New Student", 420, 560);
         JPanel  form = dialogForm();
 
         JTextField     nameF   = field();
@@ -357,7 +357,7 @@ public class AdminDashboard extends JFrame {
     }
 
     private void showRegisterLecturerDialog() {
-        JDialog dlg  = dialog("Register New Lecturer", 420, 400);
+        JDialog dlg  = dialog("Register New Lecturer", 420, 460);
         JPanel  form = dialogForm();
 
         JTextField     nameF    = field();
@@ -423,7 +423,7 @@ public class AdminDashboard extends JFrame {
     }
 
     private void showAddUnitDialog() {
-        JDialog dlg  = dialog("Add New Unit", 360, 220);
+        JDialog dlg  = dialog("Add New Unit", 360, 260);
         JPanel  form = dialogForm();
 
         JTextField codeF = field();
@@ -510,7 +510,7 @@ public class AdminDashboard extends JFrame {
     }
 
     private void showAddEnrollmentDialog() {
-        JDialog dlg  = dialog("Add Enrollment", 420, 380);
+        JDialog dlg  = dialog("Add Enrollment", 420, 440);
         JPanel  form = dialogForm();
 
         // Dropdowns populated from the database so admin picks from real data
@@ -679,7 +679,8 @@ public class AdminDashboard extends JFrame {
     }
 
     private JPanel dialogForm() {
-        JPanel form = new JPanel(new GridLayout(0, 1, 5, 5));
+        JPanel form = new JPanel();
+        form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
         form.setBackground(CARD_BG);
         form.setBorder(new EmptyBorder(20, 20, 20, 20));
         return form;
@@ -689,16 +690,22 @@ public class AdminDashboard extends JFrame {
         JLabel l = new JLabel(labelText);
         l.setFont(SMALL_FONT);
         l.setForeground(MUTED);
+        l.setAlignmentX(LEFT_ALIGNMENT);
+        field.setAlignmentX(LEFT_ALIGNMENT);
+        field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 38));  // lets it stretch wide but not too tall
         form.add(l);
+        form.add(Box.createVerticalStrut(4));
         form.add(field);
+        form.add(Box.createVerticalStrut(10));
     }
 
     private JTextField field() {
         JTextField f = new JTextField();
         f.setBackground(BG); f.setForeground(TEXT); f.setCaretColor(TEXT);
         f.setFont(BODY_FONT);
+        f.setPreferredSize(new Dimension(340, 42));
         f.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(BORDER), new EmptyBorder(6, 10, 6, 10)));
+                BorderFactory.createLineBorder(BORDER), new EmptyBorder(10, 12, 10, 12)));
         return f;
     }
 
@@ -706,8 +713,9 @@ public class AdminDashboard extends JFrame {
         JPasswordField f = new JPasswordField();
         f.setBackground(BG); f.setForeground(TEXT); f.setCaretColor(TEXT);
         f.setFont(BODY_FONT);
+        f.setPreferredSize(new Dimension(340, 42));
         f.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(BORDER), new EmptyBorder(6, 10, 6, 10)));
+                BorderFactory.createLineBorder(BORDER), new EmptyBorder(10, 12, 10, 12)));
         return f;
     }
 

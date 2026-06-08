@@ -45,8 +45,8 @@ public class StudentDashboard extends JFrame {
 
     private static final Font TITLE_FONT  = new Font("SansSerif", Font.BOLD, 22);
     private static final Font HEADER_FONT = new Font("SansSerif", Font.BOLD, 14);
-    private static final Font BODY_FONT   = new Font("SansSerif", Font.PLAIN, 15);
-    private static final Font SMALL_FONT  = new Font("SansSerif", Font.PLAIN, 13);
+    private static final Font BODY_FONT   = new Font("SansSerif", Font.PLAIN, 13);
+    private static final Font SMALL_FONT  = new Font("SansSerif", Font.PLAIN, 11);
 
     // ── State ────────────────────────────────────────────────
     private final User           loggedInUser;
