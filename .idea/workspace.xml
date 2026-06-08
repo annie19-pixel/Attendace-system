@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3aed435-0cd0-4c3a-ba72-f5f35ae566cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Attendance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Enrollment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Lecturer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/Unit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/Model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/AttendanceDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/EnrollmentDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/LecturerDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/StudentDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/UnitDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/AdminDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/LecturerDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/LoginFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/gui/StudentDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/attendance-system/src/main/java/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c00dfdd1-a518-4b7f-9bf3-a77c184f6445.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c00dfdd1-a518-4b7f-9bf3-a77c184f6445.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/AttendanceDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/src/main/java/database/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/ErollementDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/LecturerDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/StudentDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/UnitsDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/UserDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/attendance-system/src/main/java/database/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/attendance-system/src/main/java/resources/setup.sql" afterDir="false" />
-    </list>
+    <list default="true" id="c3aed435-0cd0-4c3a-ba72-f5f35ae566cb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,7 +132,7 @@
       <workItem from="1780305990540" duration="3212000" />
       <workItem from="1780420346756" duration="2926000" />
       <workItem from="1780588623302" duration="4119000" />
-      <workItem from="1780762878609" duration="2914000" />
+      <workItem from="1780762878609" duration="3654000" />
     </task>
     <servers />
   </component>

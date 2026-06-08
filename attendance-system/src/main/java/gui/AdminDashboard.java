@@ -1,10 +1,11 @@
 package gui;
 
+import Model.Enrollment;
 import Model.Lecturer;
 import Model.Student;
 import Model.Unit;
 import Model.User;
-import dao.AttendanceDAO;
+import dao.EnrollmentDAO;
 import dao.LecturerDAO;
 import dao.StudentDAO;
 import dao.UnitDAO;
@@ -17,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.List;
+
 
 /**
  * AdminDashboard — one class, all admin panels inside via CardLayout.
@@ -57,22 +59,25 @@ public class AdminDashboard extends JFrame {
     private final StudentDAO  studentDAO  = new StudentDAO();
     private final LecturerDAO lecturerDAO = new LecturerDAO();
     private final UnitDAO     unitDAO     = new UnitDAO();
+    private final EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
 
     // ── CardLayout panels ────────────────────────────────────
     private CardLayout cardLayout;
     private JPanel     contentPanel;
 
-    private static final String PANEL_OVERVIEW  = "OVERVIEW";
-    private static final String PANEL_STUDENTS  = "STUDENTS";
-    private static final String PANEL_LECTURERS = "LECTURERS";
-    private static final String PANEL_UNITS     = "UNITS";
-    private static final String PANEL_USERS     = "USERS";
+    private static final String PANEL_OVERVIEW    = "OVERVIEW";
+    private static final String PANEL_STUDENTS    = "STUDENTS";
+    private static final String PANEL_LECTURERS   = "LECTURERS";
+    private static final String PANEL_UNITS       = "UNITS";
+    private static final String PANEL_USERS       = "USERS";
+    private static final String PANEL_ENROLLMENTS = "ENROLLMENTS";
 
     // ── Table models ─────────────────────────────────────────
     private DefaultTableModel studentsModel;
     private DefaultTableModel lecturersModel;
     private DefaultTableModel unitsModel;
     private DefaultTableModel usersModel;
+    private DefaultTableModel enrollmentsModel;
 
     // ── Overview stat labels ─────────────────────────────────
     private JLabel statStudents;
@@ -118,11 +123,12 @@ public class AdminDashboard extends JFrame {
         sb.add(divider());
 
         String[][] nav = {
-                {"Overview",  PANEL_OVERVIEW},
-                {"Students",  PANEL_STUDENTS},
-                {"Lecturers", PANEL_LECTURERS},
-                {"Units",     PANEL_UNITS},
-                {"Users",     PANEL_USERS}
+                {"Overview",     PANEL_OVERVIEW},
+                {"Students",     PANEL_STUDENTS},
+                {"Lecturers",    PANEL_LECTURERS},
+                {"Units",        PANEL_UNITS},
+                {"Enrollments",  PANEL_ENROLLMENTS},
+                {"Users",        PANEL_USERS}
         };
         for (String[] item : nav) sb.add(navBtn(item[0], item[1]));
 
@@ -189,11 +195,12 @@ public class AdminDashboard extends JFrame {
         contentPanel = new JPanel(cardLayout);
         contentPanel.setBackground(BG);
 
-        contentPanel.add(buildOverviewPanel(),  PANEL_OVERVIEW);
-        contentPanel.add(buildStudentsPanel(),  PANEL_STUDENTS);
-        contentPanel.add(buildLecturersPanel(), PANEL_LECTURERS);
-        contentPanel.add(buildUnitsPanel(),     PANEL_UNITS);
-        contentPanel.add(buildUsersPanel(),     PANEL_USERS);
+        contentPanel.add(buildOverviewPanel(),     PANEL_OVERVIEW);
+        contentPanel.add(buildStudentsPanel(),     PANEL_STUDENTS);
+        contentPanel.add(buildLecturersPanel(),    PANEL_LECTURERS);
+        contentPanel.add(buildUnitsPanel(),        PANEL_UNITS);
+        contentPanel.add(buildEnrollmentsPanel(),  PANEL_ENROLLMENTS);
+        contentPanel.add(buildUsersPanel(),        PANEL_USERS);
 
         cardLayout.show(contentPanel, PANEL_OVERVIEW);
         return contentPanel;
@@ -461,16 +468,135 @@ public class AdminDashboard extends JFrame {
             usersModel.addRow(new Object[]{u.getUserId(), u.getFullName(), u.getEmail(), u.getRole()});
     }
 
+    // ── Enrollments ───────────────────────────────────────────
+    private JPanel buildEnrollmentsPanel() {
+        JPanel p = contentPanel("Enrollments");
+
+        JButton addBtn = new JButton("+ Add Enrollment");
+        styleBtn(addBtn, new Color(0xB57BF7), Color.WHITE);
+        addBtn.addActionListener(e -> showAddEnrollmentDialog());
+        headerOf(p).add(addBtn, BorderLayout.EAST);
+
+        // Columns: enrollment_id | reg_no | unit code | unit name | staff_no | semester | year
+        String[] cols = {"ID", "Reg No", "Unit Code", "Unit Name", "Staff No", "Semester", "Academic Year"};
+        enrollmentsModel = blankModel(cols);
+        p.add(scrolledTable(enrollmentsModel), BorderLayout.CENTER);
+        return p;
+    }
+
+    private void refreshEnrollmentsPanel() {
+        enrollmentsModel.setRowCount(0);
+
+        List<Unit> allUnits = unitDAO.getAllUnits();
+
+        for (Student s : studentDAO.getAllStudents()) {
+            for (Enrollment en : enrollmentDAO.getEnrollmentsByStudent(s.getRegNo())) {
+                String unitCode = String.valueOf(en.getUnitId());
+                String unitName = "-";
+                for (Unit u : allUnits) {
+                    if (u.getUnitId() == en.getUnitId()) {
+                        unitCode = u.getUnitCode();
+                        unitName = u.getUnitName();
+                        break;
+                    }
+                }
+                enrollmentsModel.addRow(new Object[]{
+                        en.getEnrollmentId(), en.getRegNo(),
+                        unitCode, unitName,
+                        en.getStaffNo(), en.getSemester(), en.getAcademicYear()
+                });
+            }
+        }
+    }
+
+    private void showAddEnrollmentDialog() {
+        JDialog dlg  = dialog("Add Enrollment", 420, 380);
+        JPanel  form = dialogForm();
+
+        // Dropdowns populated from the database so admin picks from real data
+        // ── Student dropdown ──
+        List<Student> students = studentDAO.getAllStudents();
+        String[] studentItems = students.stream()
+                .map(s -> s.getRegNo() + " — " + s.getStudentName())
+                .toArray(String[]::new);
+        JComboBox<String> studentCombo = new JComboBox<>(studentItems);
+        styleCombo(studentCombo);
+
+        // ── Unit dropdown ──
+        List<Unit> units = unitDAO.getAllUnits();
+        String[] unitItems = units.stream()
+                .map(u -> u.getUnitId() + " — " + u.getUnitCode() + " " + u.getUnitName())
+                .toArray(String[]::new);
+        JComboBox<String> unitCombo = new JComboBox<>(unitItems);
+        styleCombo(unitCombo);
+
+        // ── Lecturer dropdown ──
+        List<Lecturer> lecturers = lecturerDAO.getAllLecturers();
+        String[] lecturerItems = lecturers.stream()
+                .map(l -> l.getStaffNo() + " — " + l.getLecturerName())
+                .toArray(String[]::new);
+        JComboBox<String> lecturerCombo = new JComboBox<>(lecturerItems);
+        styleCombo(lecturerCombo);
+
+        JTextField semesterField     = field();
+        JTextField academicYearField = field();
+
+        addRow(form, "Student",       studentCombo);
+        addRow(form, "Unit",          unitCombo);
+        addRow(form, "Lecturer",      lecturerCombo);
+        addRow(form, "Semester  (e.g. Sem 1)", semesterField);
+        addRow(form, "Academic Year  (e.g. 2024/2025)", academicYearField);
+
+        JLabel  msg    = msgLabel();
+        JButton submit = new JButton("Enroll");
+        styleBtn(submit, new Color(0xB57BF7), Color.WHITE);
+        form.add(msg);
+        form.add(submit);
+
+        submit.addActionListener(e -> {
+            // Guard: check lists are not empty before trying to read selection
+            if (students.isEmpty() || units.isEmpty() || lecturers.isEmpty()) {
+                msg.setText("Make sure students, units and lecturers exist first."); return;
+            }
+
+            String semester     = semesterField.getText().trim();
+            String academicYear = academicYearField.getText().trim();
+            if (semester.isEmpty() || academicYear.isEmpty()) {
+                msg.setText("Semester and academic year are required."); return;
+            }
+
+            // Parse the selected reg_no, unit_id, staff_no from the combo labels
+            String regNo   = ((String) studentCombo.getSelectedItem()).split(" — ")[0].trim();
+            int    unitId  = Integer.parseInt(((String) unitCombo.getSelectedItem()).split(" — ")[0].trim());
+            String staffNo = ((String) lecturerCombo.getSelectedItem()).split(" — ")[0].trim();
+
+            Enrollment en = new Enrollment(0, regNo, unitId, staffNo, semester, academicYear);
+            boolean ok = enrollmentDAO.addEnrollment(en);
+
+            if (ok) {
+                dlg.dispose();
+                refreshEnrollmentsPanel();
+                JOptionPane.showMessageDialog(this, "Student enrolled successfully.");
+            } else {
+                msg.setText("Enrollment failed. It may already exist.");
+            }
+        });
+
+        dlg.add(form);
+        dlg.setVisible(true);
+    }
+
     // ─────────────────────────────────────────────────────────
     // REFRESH DISPATCHER
     // ─────────────────────────────────────────────────────────
     private void refreshPanel(String name) {
         switch (name) {
-            case PANEL_OVERVIEW:  refreshOverview();       break;
-            case PANEL_STUDENTS:  refreshStudentsPanel();  break;
-            case PANEL_LECTURERS: refreshLecturersPanel(); break;
-            case PANEL_UNITS:     refreshUnitsPanel();     break;
-            case PANEL_USERS:     refreshUsersPanel();     break;
+            case PANEL_OVERVIEW:     refreshOverview();          break;
+            case PANEL_STUDENTS:     refreshStudentsPanel();     break;
+            case PANEL_LECTURERS:    refreshLecturersPanel();    break;
+            case PANEL_UNITS:        refreshUnitsPanel();        break;
+            case PANEL_ENROLLMENTS:  refreshEnrollmentsPanel();  break;
+            case PANEL_USERS:        refreshUsersPanel();        break;
         }
     }
 
@@ -583,6 +709,13 @@ public class AdminDashboard extends JFrame {
         f.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER), new EmptyBorder(6, 10, 6, 10)));
         return f;
+    }
+
+    private void styleCombo(JComboBox<String> combo) {
+        combo.setBackground(BG);
+        combo.setForeground(TEXT);
+        combo.setFont(BODY_FONT);
+        combo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
     }
 
     private JLabel msgLabel() {

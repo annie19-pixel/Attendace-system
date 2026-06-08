@@ -7,22 +7,21 @@ import service.AuthService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
- * LoginFrame — entry point for the whole application.
+ * LoginFrame — application entry point.
  *
- * Changes from previous version:
- *  - "admin"    case now opens AdminDashboard(user)
- *  - "student"  case fetches Student profile then opens StudentDashboard(user, student)
- *  - "lecturer" case fetches Lecturer profile then opens LecturerDashboard(user, lecturer)
- *  - Removed all JOptionPane placeholders
+ * "Don't have an account? Register here" link opens RegisterFrame
+ * for all user types (Student, Lecturer, Admin).
  */
 public class LoginFrame extends JFrame {
 
-    private final AuthService authService;
-    private JTextField    emailField;
-    private JPasswordField passwordField;
-    private JLabel        messageLabel;
+    private final AuthService  authService;
+    private JTextField         emailField;
+    private JPasswordField     passwordField;
+    private JLabel             messageLabel;
 
     public LoginFrame() {
         this.authService = new AuthService();
@@ -31,94 +30,120 @@ public class LoginFrame extends JFrame {
 
     private void buildUI() {
         setTitle("Attendance Management System");
-        setSize(420, 280);
+        setSize(420, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        JPanel main = new JPanel(new BorderLayout(10, 10));
+        main.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
 
+        // ── Title ──
         JLabel titleLabel = new JLabel("Attendance Management System", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        mainPanel.add(titleLabel, BorderLayout.NORTH);
+        main.add(titleLabel, BorderLayout.NORTH);
 
-        JPanel formPanel = new JPanel(new GridLayout(4, 1, 5, 5));
-        formPanel.add(new JLabel("Email:"));
+        // ── Form ──
+        JPanel form = new JPanel(new GridLayout(4, 1, 5, 5));
+        form.add(new JLabel("Email:"));
         emailField = new JTextField();
-        formPanel.add(emailField);
-        formPanel.add(new JLabel("Password:"));
+        form.add(emailField);
+        form.add(new JLabel("Password:"));
         passwordField = new JPasswordField();
-        formPanel.add(passwordField);
-        mainPanel.add(formPanel, BorderLayout.CENTER);
+        form.add(passwordField);
+        main.add(form, BorderLayout.CENTER);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+        // ── Bottom: login button + error + register link ──
+        JPanel bottom = new JPanel(new GridLayout(3, 1, 5, 5));
+
         JButton loginButton = new JButton("Login");
         loginButton.setFont(new Font("Arial", Font.BOLD, 14));
-        messageLabel = new JLabel("", SwingConstants.CENTER);
-        messageLabel.setForeground(Color.RED);
-        bottomPanel.add(loginButton);
-        bottomPanel.add(messageLabel);
-        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-        add(mainPanel);
+        messageLabel = new JLabel(" ", SwingConstants.CENTER);
+        messageLabel.setForeground(Color.RED);
+
+        // Register link — works for all roles
+        JLabel registerLink = new JLabel("Don't have an account? Register here", SwingConstants.CENTER);
+        registerLink.setFont(new Font("Arial", Font.PLAIN, 12));
+        registerLink.setForeground(new Color(0x1A6FD4));
+        registerLink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        registerLink.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                SwingUtilities.invokeLater(() -> new RegisterFrame().setVisible(true));
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                registerLink.setText("<html><u>Don't have an account? Register here</u></html>");
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                registerLink.setText("Don't have an account? Register here");
+            }
+        });
+
+        bottom.add(loginButton);
+        bottom.add(messageLabel);
+        bottom.add(registerLink);
+        main.add(bottom, BorderLayout.SOUTH);
+
+        add(main);
 
         loginButton.addActionListener(e -> handleLogin());
         passwordField.addActionListener(e -> handleLogin());
     }
 
+    // ─────────────────────────────────────────────────────────
+    // HANDLE LOGIN
+    // ─────────────────────────────────────────────────────────
     private void handleLogin() {
         String email    = emailField.getText().trim();
         String password = new String(passwordField.getPassword());
 
         if (email.isEmpty() || password.isEmpty()) {
-            messageLabel.setText("Please enter both email and password");
+            messageLabel.setText("Please enter both email and password.");
             return;
         }
 
         User user = authService.login(email, password);
 
         if (user == null) {
-            messageLabel.setText("Invalid email or password");
+            messageLabel.setText("Invalid email or password.");
             passwordField.setText("");
             return;
         }
 
-        // Login OK — close login window, open the right dashboard
         dispose();
 
         switch (user.getRole()) {
-
             case "admin":
                 SwingUtilities.invokeLater(() ->
-                        new AdminDashboard(user).setVisible(true)
-                );
+                        new AdminDashboard(user).setVisible(true));
                 break;
 
             case "student":
-                // Fetch the extended student profile (reg_no, year, stream)
                 Student studentProfile = authService.getStudentProfile(user);
                 SwingUtilities.invokeLater(() ->
-                        new StudentDashboard(user, studentProfile).setVisible(true)
-                );
+                        new StudentDashboard(user, studentProfile).setVisible(true));
                 break;
 
             case "lecturer":
-                // Fetch the extended lecturer profile (staff_no, department)
                 Lecturer lecturerProfile = authService.getLecturerProfile(user);
                 SwingUtilities.invokeLater(() ->
-                        new LecturerDashboard(user, lecturerProfile).setVisible(true)
-                );
+                        new LecturerDashboard(user, lecturerProfile).setVisible(true));
                 break;
 
             default:
-                // Shouldn't happen if database roles are correct
                 new LoginFrame().setVisible(true);
                 JOptionPane.showMessageDialog(null,
                         "Unknown role '" + user.getRole() + "'. Contact admin.");
         }
     }
 
+    // ─────────────────────────────────────────────────────────
+    // MAIN — application entry point
+    // ─────────────────────────────────────────────────────────
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
     }

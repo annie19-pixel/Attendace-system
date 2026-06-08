@@ -101,3 +101,4 @@ CREATE TABLE attendance (
                                 REFERENCES enrollment(enrollment_id)
                                 ON DELETE CASCADE
 ) AUTO_INCREMENT = 1000;
+
